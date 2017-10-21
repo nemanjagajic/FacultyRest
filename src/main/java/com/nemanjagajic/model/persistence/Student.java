@@ -1,4 +1,4 @@
-package com.nemanjagajic.model;
+package com.nemanjagajic.model.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

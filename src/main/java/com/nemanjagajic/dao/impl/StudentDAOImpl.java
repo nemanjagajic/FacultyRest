@@ -1,8 +1,7 @@
 package com.nemanjagajic.dao.impl;
 
-import com.nemanjagajic.dao.FacultyDAO;
 import com.nemanjagajic.dao.StudentDAO;
-import com.nemanjagajic.model.Student;
+import com.nemanjagajic.model.persistence.Student;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -36,18 +35,6 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public Student create(Student entity) {
-        if (entity.getId() != 0) {
-            throw new IllegalArgumentException("Id will be generated automatically, you cannot choose it.");
-        }
-
-        if (entity.getFaculty() != null) {
-            FacultyDAO facultyDAO = new FacultyDAOImpl();
-            facultyDAO.create(entity.getFaculty());
-            System.out.println("FACULTY NOT NULL");
-        } else {
-            System.out.println("FACULTY IS NULL");
-        }
-
         entityManager.persist(entity);
         entityManager.flush();
         return entity;

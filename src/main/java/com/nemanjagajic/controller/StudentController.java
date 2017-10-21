@@ -1,7 +1,10 @@
 package com.nemanjagajic.controller;
 
+import com.nemanjagajic.dao.FacultyDAO;
 import com.nemanjagajic.dao.StudentDAO;
-import com.nemanjagajic.model.Student;
+import com.nemanjagajic.dao.impl.FacultyDAOImpl;
+import com.nemanjagajic.model.persistence.Student;
+import com.nemanjagajic.model.rest.StudentRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +13,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("student")
-public class StudentController implements BasicController<Student> {
+public class StudentController implements BasicController<Student, StudentRequest> {
     @Autowired
     private StudentDAO studentDAO;
+
+    @Autowired
+    private FacultyDAO facultyDAO;
 
     @Override
     @ResponseBody
@@ -31,17 +37,25 @@ public class StudentController implements BasicController<Student> {
     @Override
     @ResponseBody
     @PostMapping("add")
-    public Student post(@RequestBody Student entity) {
+    public Student post(@RequestBody StudentRequest entity) {
         System.out.println(entity);
-//        return studentDAO.create(entity);
-        return null;
+
+        Student student = new Student();
+        student.setName(entity.getName());
+        student.setLastName(entity.getLastName());
+        student.setFaculty(facultyDAO.getById(entity.getFacultyId()));
+        return studentDAO.create(student);
     }
 
     @Override
     @ResponseBody
     @PutMapping("update/{id}")
-    public Student put(@PathVariable("id") Integer id, @RequestBody Student entity) {
-        return studentDAO.update(id, entity);
+    public Student put(@PathVariable("id") Integer id, @RequestBody StudentRequest entity) {
+        Student student = new Student();
+        student.setName(entity.getName());
+        student.setLastName(entity.getLastName());
+        student.setFaculty(facultyDAO.getById(entity.getFacultyId()));
+        return studentDAO.update(id, student);
     }
 
     @Override

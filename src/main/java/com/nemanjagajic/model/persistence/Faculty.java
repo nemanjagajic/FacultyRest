@@ -1,16 +1,17 @@
-package com.nemanjagajic.model;
+package com.nemanjagajic.model.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.LinkedList;
 
 @Entity
 public class Faculty {
     private int id;
     private String name;
     private String location;
-    private Collection<Student> students;
+    private Collection<Student> students = new LinkedList<>();
 
     @Id
     @Column(name = "id")

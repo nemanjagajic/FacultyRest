@@ -1,7 +1,7 @@
 package com.nemanjagajic.dao.impl;
 
 import com.nemanjagajic.dao.FacultyDAO;
-import com.nemanjagajic.model.Faculty;
+import com.nemanjagajic.model.persistence.Faculty;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -35,10 +35,6 @@ public class FacultyDAOImpl implements FacultyDAO {
 
     @Override
     public Faculty create(Faculty entity) {
-        if (entity.getId() != 0) {
-            throw new IllegalArgumentException("Id will be generated automatically, you cannot choose it.");
-        }
-
         entityManager.persist(entity);
         entityManager.flush();
         return entity;

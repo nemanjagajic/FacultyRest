@@ -2,10 +2,10 @@ package com.nemanjagajic.controller;
 
 import java.util.List;
 
-public interface BasicController<T> {
+public interface BasicController<T, R> {
     List<T> getAll();
     T getById(Integer id);
-    T post(T entity);
-    T put(Integer id, T entity);
+    T post(R entity);
+    T put(Integer id, R entity);
     T delete(Integer id);
 }
