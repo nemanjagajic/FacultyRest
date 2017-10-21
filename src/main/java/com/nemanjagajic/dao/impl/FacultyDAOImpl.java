@@ -35,7 +35,12 @@ public class FacultyDAOImpl implements FacultyDAO {
 
     @Override
     public Faculty create(Faculty entity) {
+        if (entity.getId() != 0) {
+            throw new IllegalArgumentException("Id will be generated automatically, you cannot choose it.");
+        }
+
         entityManager.persist(entity);
+        entityManager.flush();
         return entity;
     }
 
@@ -53,6 +58,7 @@ public class FacultyDAOImpl implements FacultyDAO {
     public Faculty delete(Integer id) {
         Faculty faculty = getById(id);
         entityManager.remove(faculty);
+        entityManager.flush();
         return faculty;
     }
 }

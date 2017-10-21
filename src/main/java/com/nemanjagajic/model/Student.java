@@ -63,6 +63,11 @@ public class Student {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return this.id + ": " + this.name + " " + this.lastName + " " + this.faculty;
+    }
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "faculty_id", referencedColumnName = "id")

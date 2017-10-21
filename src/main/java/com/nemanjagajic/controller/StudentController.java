@@ -32,7 +32,9 @@ public class StudentController implements BasicController<Student> {
     @ResponseBody
     @PostMapping("add")
     public Student post(@RequestBody Student entity) {
-        return studentDAO.create(entity);
+        System.out.println(entity);
+//        return studentDAO.create(entity);
+        return null;
     }
 
     @Override
