@@ -2,7 +2,6 @@ package com.nemanjagajic.controller;
 
 import com.nemanjagajic.dao.FacultyDAO;
 import com.nemanjagajic.dao.StudentDAO;
-import com.nemanjagajic.dao.impl.FacultyDAOImpl;
 import com.nemanjagajic.model.persistence.Student;
 import com.nemanjagajic.model.rest.StudentRequest;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -67,10 +67,9 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return this.id + ": " + this.name + " " + this.location + " " + this.students;
+        return this.id + ": " + this.name + " " + this.location;
     }
 
-    @JsonIgnore
     @OneToMany(mappedBy = "faculty")
     public Collection<Student> getStudents() {
         return students;
